@@ -26,6 +26,8 @@ from utilities.llm_wrappers import OllamaWrapper, HuggingFaceWrapper
 
 import os
 import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 def is_ollama_running():
     try:
