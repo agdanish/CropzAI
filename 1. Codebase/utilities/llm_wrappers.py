@@ -5,7 +5,7 @@ class OllamaWrapper:
     def __init__(self, model_name="llama3"):
         self.model_name = model_name
 
-    def run(self, prompt):
+    def chat(self, prompt):
         try:
             response = requests.post(
                 "http://localhost:11434/api/generate",
@@ -24,7 +24,7 @@ class HuggingFaceWrapper:
             "Content-Type": "application/json"
         }
 
-    def run(self, prompt):
+    def chat(self, prompt):
         try:
             response = requests.post(
                 self.model_url,
