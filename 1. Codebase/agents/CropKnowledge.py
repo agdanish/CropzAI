@@ -1,6 +1,6 @@
 """
 Agent 1: CropKnowledge
-Suggests best crops based on soil, climate, and historical success using Ollama LLM and SQLite.
+Suggests best crops based on soil, climate, and historical success using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -44,8 +44,7 @@ class CropKnowledge:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
