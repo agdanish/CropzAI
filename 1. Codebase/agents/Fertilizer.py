@@ -1,6 +1,6 @@
 """
 Agent 15: Fertilizer
-Recommends optimal fertilizer type and dosage using crop, soil, and yield data with Ollama LLM and SQLite.
+Recommends optimal fertilizer type and dosage using crop, soil, and yield data with LLM and SQLite.
 """
 
 from datetime import datetime
@@ -41,8 +41,7 @@ class Fertilizer:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
