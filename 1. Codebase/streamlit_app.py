@@ -58,34 +58,21 @@ def get_base64_of_bin_file(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-def set_png_as_page_bg(png_file):
-    try:
-        bin_str = get_base64_of_bin_file(png_file)
-        page_bg_img = '''
+def set_png_as_page_bg(image_url):
+    st.markdown(
+        f"""
         <style>
-        .stApp {
-            background-image: url("data:image/png;base64,%s");
+        .stApp {{
+            background-image: url("{image_url}");
             background-size: cover;
-            background-position: center;
             background-repeat: no-repeat;
+            background-position: center;
             background-attachment: fixed;
-        }
+        }}
         </style>
-        ''' % bin_str
-        st.markdown(page_bg_img, unsafe_allow_html=True)
-    except Exception as e:
-        # Fallback to gradient if file not found
-        st.markdown(
-            """
-            <style>
-            .stApp {
-                background: linear-gradient(135deg, #e0f7fa 0%, #f5f7fa 100%);
-                background-attachment: fixed;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
+        """,
+        unsafe_allow_html=True
+    )
 
 # Alternative function to create a gradient background
 def set_gradient_background():
