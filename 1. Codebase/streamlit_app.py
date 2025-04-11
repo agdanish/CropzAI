@@ -573,7 +573,29 @@ except Exception as e:
     regions = ["North", "South", "East", "West", "Central"]
 
 # Setup DB and LLM
-db_conn = sqlite3.connect(r"D:\CropzAI\4. Database\cropzai_memory.db", check_same_thread=False)
+import sqlite3
+import requests
+import os
+
+def download_db_from_github(url, save_path="4. Database/cropzai_memory.db"):
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    if not os.path.exists(save_path):
+        print("📥 Downloading database from GitHub...")
+        response = requests.get(url)
+        with open(save_path, "wb") as f:
+            f.write(response.content)
+        print("✅ Database downloaded to:", save_path)
+    return save_path
+
+# ✅ Replace this block in your code
+# --- OLD ---
+# db_conn = sqlite3.connect("https://raw.githubusercontent.com/...")
+
+# --- NEW ---
+db_url = "https://raw.githubusercontent.com/agdanish/CropzAI/main/4.%20Database/cropzai_memory.db"
+local_db_path = download_db_from_github(db_url)
+db_conn = sqlite3.connect(local_db_path, check_same_thread=False)
+
 llm = get_llm()
 
 # Load agents
