@@ -36,11 +36,12 @@ class Climate:
         - Temperature: {temp}°C
         - Rainfall: {rainfall} mm
 
-        Is the climate suitable for this crop? If not, suggest mitigation measures or alternative crops.
+        Is the climate suitable for this crop? If not, suggest mitigation measures or alternatives.
         """
 
         try:
-            output_data = self.llm.generate(prompt)
+            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
+            output_data = response["message"]["content"]
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
