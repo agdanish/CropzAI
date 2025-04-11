@@ -1,6 +1,6 @@
 """
 Agent 17: Yield
-Predicts crop yield based on farm inputs and environmental conditions using Ollama LLM and SQLite.
+Predicts crop yield based on farm inputs and environmental conditions using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -48,8 +48,7 @@ class Yield:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
