@@ -1,6 +1,6 @@
 """
 Agent 12: Temperature
-Analyzes temperature conditions for potential risks to crop health using Ollama LLM and SQLite.
+Analyzes temperature conditions for potential risks to crop health using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -36,8 +36,7 @@ class Temperature:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
