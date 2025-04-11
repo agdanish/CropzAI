@@ -6,3 +6,5 @@ plotly
 streamlit-lottie
 streamlit-option-menu
 streamlit-card
+python-dotenv
+requests
