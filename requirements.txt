@@ -1,0 +1,7 @@
+streamlit
+ollama
+pandas
+plotly
+streamlit-lottie
+streamlit-option-menu
+streamlit-card
