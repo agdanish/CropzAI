@@ -26,8 +26,6 @@ from utilities.llm_wrappers import OllamaWrapper, HuggingFaceWrapper
 
 import os
 import requests
-from dotenv import load_dotenv
-load_dotenv()
 
 def is_ollama_running():
     try:
@@ -41,7 +39,7 @@ def get_llm():
         return OllamaWrapper(model_name="llama3")
     else:
         return HuggingFaceWrapper(
-            model_url="https://api-inference.huggingface.co/models/bigscience/bloom-560m",
+            model_url="https://api-inference.huggingface.co/models/gpt2",
             api_token=os.getenv("HF_API_TOKEN")
         )
 
