@@ -1,6 +1,6 @@
 """
 Agent 3: DemandTrend
-Forecasts future crop demand using demand index, consumer trends, and seasonality via Ollama LLM and SQLite.
+Forecasts future crop demand using demand index, consumer trends, and seasonality via LLM and SQLite.
 """
 
 from datetime import datetime
@@ -41,8 +41,7 @@ class DemandTrend:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
