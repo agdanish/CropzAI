@@ -1,4 +1,4 @@
-import streamlit as st
+import stream as st
 
 # UI Setup
 st.set_page_config(
