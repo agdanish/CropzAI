@@ -46,7 +46,7 @@ class HuggingFaceWrapper:
             "Content-Type": "application/json"
         }
 
-    def chat(self, prompt):
+    def chat(self, prompt, **kwargs):  # ✅ Accepts extra arguments
         try:
             response = requests.post(
                 self.model_url,
