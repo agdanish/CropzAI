@@ -40,7 +40,7 @@ def get_llm():
     else:
         return HuggingFaceWrapper(
             model_url="https://api-inference.huggingface.co/models/bigscience/bloom-560m",
-            api_token=os.getenv("HF_API_TOKEN")
+            api_token=os.getenv("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")
         )
 
 # Function to load image as base64 for background
