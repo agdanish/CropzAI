@@ -538,7 +538,7 @@ except Exception as e:
 
 # Setup DB and LLM
 db_conn = sqlite3.connect(r"D:\CropzAI\4. Database\cropzai_memory.db", check_same_thread=False)
-llm = Client()
+llm = get_llm()
 
 # Load agents
 AGENT_DIR = "agents"
