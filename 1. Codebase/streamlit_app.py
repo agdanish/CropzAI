@@ -24,6 +24,25 @@ import streamlit_authenticator as stauth
 import base64
 from utilities.llm_wrappers import OllamaWrapper, HuggingFaceWrapper
 
+import os
+import requests
+
+def is_ollama_running():
+    try:
+        r = requests.get("http://localhost:11434")
+        return r.status_code == 200
+    except:
+        return False
+
+def get_llm():
+    if is_ollama_running():
+        return OllamaWrapper(model_name="llama3")
+    else:
+        return HuggingFaceWrapper(
+            model_url="https://api-inference.huggingface.co/models/bigscience/bloom-560m",
+            api_token=os.getenv("HF_API_TOKEN")
+        )
+
 # Function to load image as base64 for background
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
