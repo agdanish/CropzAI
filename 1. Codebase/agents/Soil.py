@@ -1,6 +1,6 @@
 """
 Agent 10: Soil
-Analyzes soil characteristics and evaluates crop compatibility using Ollama LLM and SQLite.
+Analyzes soil characteristics and evaluates crop compatibility using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -40,8 +40,7 @@ class Soil:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
