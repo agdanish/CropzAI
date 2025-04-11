@@ -512,7 +512,7 @@ def configure_particles():
 def load_data():
     try:
         market_df = pd.read_csv("https://raw.githubusercontent.com/agdanish/CropzAI/main/2.%20Datasets/market_researcher_dataset.csv")
-        farmer_df = pd.read_csv(r"D:\CropzAI\2. Datasets\farmer_advisor_dataset.csv")
+        farmer_df = pd.read_csv("https://raw.githubusercontent.com/agdanish/CropzAI/main/2.%20Datasets/farmer_advisor_dataset.csv")
         return market_df, farmer_df
     except Exception as e:
         st.warning(f"Using sample data due to error: {str(e)}")
