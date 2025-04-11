@@ -22,8 +22,7 @@ import json
 from streamlit_option_menu import option_menu
 import streamlit_authenticator as stauth
 import base64
-
-
+from utilities.llm_wrappers import OllamaWrapper, HuggingFaceWrapper
 
 # Function to load image as base64 for background
 def get_base64_of_bin_file(bin_file):
