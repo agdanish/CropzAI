@@ -598,8 +598,7 @@ for name in AGENT_LIST:
 # Try to set background image, fall back to gradient
 try:
     # If you have an image file, uncomment the line below:
-    set_image_as_page_bg("https://github.com/agdanish/CropzAI/blob/main/3.%20Utilities/bg-overlay.jpeg")
-
+    set_image_as_page_bg("https://raw.githubusercontent.com/agdanish/CropzAI/main/3.%20Utilities/bg-overlay.jpeg")
     # If not, use a gradient:
     #set_gradient_background()
 except:
