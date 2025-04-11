@@ -1,6 +1,6 @@
 """
 Agent 19: WeatherImpact
-Assesses risk of weather extremes on crop health and suggests resilience strategies using Ollama LLM and SQLite.
+Assesses risk of weather extremes on crop health and suggests resilience strategies using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -40,8 +40,7 @@ class WeatherImpact:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
