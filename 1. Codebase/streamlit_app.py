@@ -570,7 +570,7 @@ for name in AGENT_LIST:
 # Try to set background image, fall back to gradient
 try:
     # If you have an image file, uncomment the line below:
-    set_png_as_page_bg(r'D:\CropzAI\3. Utilities\bg-overlay.jpeg')
+    set_png_as_page_bg("https://raw.githubusercontent.com/agdanish/CropzAI/main/3.%20Utilities/bg-overlay.jpeg")
     # If not, use a gradient:
     #set_gradient_background()
 except:
@@ -595,7 +595,8 @@ with st.sidebar:
 
     # Load and display logo
     try:
-        logo = Image.open(r"D:\CropzAI\3. Utilities\cropzai_logo.png")  # Make sure your logo is placed in the same folder
+        logo_url = "https://raw.githubusercontent.com/agdanish/CropzAI/main/3.%20Utilities/cropzai_logo.png"
+        logo = Image.open(BytesIO(requests.get(logo_url).content))
         st.image(logo, width=180)  # Adjust width as needed
     except Exception as e:
         st.warning(f"Logo not found: {e}")
