@@ -1,6 +1,6 @@
 """
 Agent 18: SoilMoisture
-Analyzes soil moisture levels against crop-specific requirements using Ollama LLM and SQLite.
+Analyzes soil moisture levels against crop-specific requirements using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -39,8 +39,7 @@ class SoilMoisture:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
