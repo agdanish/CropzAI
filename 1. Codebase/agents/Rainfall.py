@@ -1,6 +1,6 @@
 """
 Agent 13: Rainfall
-Assesses rainfall adequacy for the selected crop and provides water management advice using Ollama LLM and SQLite.
+Assesses rainfall adequacy for the selected crop and provides water management advice using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -39,8 +39,7 @@ class Rainfall:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
