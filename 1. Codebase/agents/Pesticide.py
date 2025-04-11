@@ -1,6 +1,6 @@
 """
 Agent 16: Pesticide
-Recommends minimal but effective pesticide use considering weather and crop risk using Ollama LLM and SQLite.
+Recommends minimal but effective pesticide use considering weather and crop risk using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -41,8 +41,7 @@ class Pesticide:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
