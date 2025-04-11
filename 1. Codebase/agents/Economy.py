@@ -1,6 +1,6 @@
 """
 Agent 6: Economy
-Assesses economic feasibility using economic indicators and regional factors using Ollama LLM and SQLite.
+Assesses economic feasibility using economic indicators and regional factors via LLM and SQLite.
 """
 
 from datetime import datetime
@@ -40,8 +40,7 @@ class Economy:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
