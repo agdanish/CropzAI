@@ -8,6 +8,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # ✅ This loads the .env file
+
+# Now this will work:
+api_token = os.getenv("HF_API_TOKEN")
+
 import importlib
 import os
 import uuid
