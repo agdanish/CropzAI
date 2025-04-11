@@ -1,6 +1,6 @@
 """
 Agent 23: WaterAdvisor
-Recommends water-saving techniques based on soil, crop, and weather data using Ollama LLM and SQLite.
+Recommends water-saving techniques based on soil, crop, and weather data using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -43,8 +43,7 @@ class WaterAdvisor:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
