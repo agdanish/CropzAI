@@ -1,6 +1,6 @@
 """
 Agent 20: RegionAdvisor
-Suggests the best regions to grow the selected crop based on climate, soil, and market conditions using Ollama LLM and SQLite.
+Suggests the best regions to grow the selected crop based on climate, soil, and market conditions using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -42,8 +42,7 @@ class RegionAdvisor:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
