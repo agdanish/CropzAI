@@ -26,6 +26,8 @@ class HuggingFaceWrapper:
         }
 
     def chat(self, prompt, **kwargs):  # Accepts and ignores extra arguments like model, context
+        if not prompt:
+            return "[LLM Error] No prompt provided to LLM."
         try:
             response = requests.post(
                 self.model_url,
