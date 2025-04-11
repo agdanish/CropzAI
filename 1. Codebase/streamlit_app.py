@@ -16,6 +16,7 @@ load_dotenv()  # ✅ This loads the .env file
 # Now this will work:
 api_token = os.getenv("HF_API_TOKEN")
 
+from io import BytesIO
 import importlib
 import os
 import uuid
