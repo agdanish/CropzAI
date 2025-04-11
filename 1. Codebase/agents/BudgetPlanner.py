@@ -1,6 +1,6 @@
 """
 Agent 21: BudgetPlanner
-Creates a cost plan for crop production and projects ROI using Ollama LLM and SQLite.
+Creates a cost plan for crop production and projects ROI using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -44,8 +44,7 @@ class BudgetPlanner:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
