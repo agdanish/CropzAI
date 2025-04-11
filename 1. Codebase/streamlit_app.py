@@ -58,23 +58,49 @@ def get_base64_of_bin_file(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-def set_png_as_page_bg(png_file):
+import base64
+import streamlit as st
+import os
+import requests
+from io import BytesIO
+
+def set_image_as_page_bg(path_or_url):
     try:
-        bin_str = get_base64_of_bin_file(png_file)
-        page_bg_img = '''
-        <style>
-        .stApp {
-            background-image: url("data:image/png;base64,%s");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        </style>
-        ''' % bin_str
-        st.markdown(page_bg_img, unsafe_allow_html=True)
+        if path_or_url.startswith("http"):
+            # Remote image
+            response = requests.get(path_or_url)
+            if response.status_code == 200:
+                image_data = response.content
+                ext = os.path.splitext(path_or_url)[-1].lower()
+            else:
+                raise ValueError("Could not fetch image from URL.")
+        else:
+            # Local file
+            with open(path_or_url, "rb") as f:
+                image_data = f.read()
+            ext = os.path.splitext(path_or_url)[-1].lower()
+
+        mime_type = "image/jpeg" if ext in [".jpg", ".jpeg"] else "image/png"
+        bin_str = base64.b64encode(image_data).decode()
+
+        st.markdown(
+            f"""
+            <style>
+            .stApp {{
+                background-image: url("data:{mime_type};base64,{bin_str}");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }}
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
+
     except Exception as e:
-        # Fallback to gradient if file not found
+        print("Error loading background image:", e)
+        # Optional fallback
         st.markdown(
             """
             <style>
@@ -86,6 +112,7 @@ def set_png_as_page_bg(png_file):
             """,
             unsafe_allow_html=True
         )
+
 
 # Alternative function to create a gradient background
 def set_gradient_background():
