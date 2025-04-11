@@ -34,18 +34,17 @@ class BudgetPlanner:
         region = input_data.get("Region", "your area")
 
         prompt = f"""
-        Create a simple budget plan for growing {crop} in {region}:
+        As an agricultural budget advisor, create a cost plan for growing {crop} in {region}:
         - Fertilizer: {fertilizer} kg
         - Pesticide: {pesticide} kg
         - Expected Yield: {yield_val} tons
         - Market Price: ₹{market_price} per ton
 
-        Estimate total cost, revenue, and ROI. Suggest how to reduce costs or boost profits.
+        Estimate total production cost, revenue, and ROI. Provide strategies to reduce costs or improve profit margins.
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.generate(prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
