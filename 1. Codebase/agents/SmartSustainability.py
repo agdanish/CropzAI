@@ -1,6 +1,6 @@
 """
 Agent 22: SmartSustainability
-Suggests sustainable farming practices to reduce environmental impact using Ollama LLM and SQLite.
+Suggests sustainable farming practices to reduce environmental impact using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -46,8 +46,7 @@ class SmartSustainability:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
