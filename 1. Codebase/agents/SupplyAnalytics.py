@@ -1,6 +1,6 @@
 """
 Agent 4: SupplyAnalytics
-Identifies over- or under-supply regions using supply index and market data via Ollama LLM and SQLite.
+Identifies over- or under-supply regions using supply index and market data via LLM and SQLite.
 """
 
 from datetime import datetime
@@ -40,8 +40,7 @@ class SupplyAnalytics:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
