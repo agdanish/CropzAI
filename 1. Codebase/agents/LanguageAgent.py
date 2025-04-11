@@ -1,6 +1,6 @@
 """
 Agent 25: LanguageAgent
-Translates and simplifies agent outputs into the farmer’s preferred language using Ollama LLM and SQLite.
+Translates and simplifies agent outputs into the farmer’s preferred language using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -47,8 +47,7 @@ class LanguageAgent:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            translated_text = response["message"]["content"]
+            translated_text = self.llm.chat(prompt=prompt)
         except Exception as e:
             translated_text = f"Error translating: {e}"
 
