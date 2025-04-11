@@ -1,6 +1,6 @@
 """
 Agent 5: CompetitorMarket
-Compares your crop's price vs. competitors and evaluates pricing strategy using Ollama LLM and SQLite.
+Compares your crop's price vs. competitors and evaluates pricing strategy using LLM and SQLite.
 """
 
 from datetime import datetime
@@ -41,8 +41,7 @@ class CompetitorMarket:
         """
 
         try:
-            response = self.llm.chat(model="mistral", messages=[{"role": "user", "content": prompt}])
-            output_data = response["message"]["content"]
+            output_data = self.llm.chat(prompt=prompt)
         except Exception as e:
             output_data = f"Error generating LLM response: {e}"
 
